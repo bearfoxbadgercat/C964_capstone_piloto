@@ -65,3 +65,19 @@ button:hover {
 .text-center {
     text-align: center;
 }
+
+/* Animation class for fading out */
+/* styles.css */
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
