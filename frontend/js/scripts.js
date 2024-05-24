@@ -1,7 +1,15 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form from submitting normally
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
-    console.log('Login attempt with username:', username, 'and password:', password);
-    // Here you would typically handle the login logic or call a backend service
+    event.preventDefault(); // Prevent the form from submitting immediately
+    console.log('Form submission prevented');
+
+    var form = this;
+    console.log('Form element:', form);
+
+    form.classList.add('fade-out'); // Add the fade-out animation class
+    console.log('Fade-out class added');
+
+    setTimeout(function() {
+        console.log('Timeout reached, submitting form');
+        form.submit(); // Submit the form after the animation completes
+    }, 500); // Delay in milliseconds matching the CSS animation
 });
