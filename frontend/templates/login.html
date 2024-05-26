@@ -1,71 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+    <!-- Including Bootstrap CSS for responsive and modern styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS to style the login container -->
     <style>
+        /* CSS to style the body and login container */
         body {
-            display: none; /* Initially hide the body for fade-in effect */
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8f9fa;
-            display: flex; /* Use flexbox */
+            display: none; /* Hide the body initially for a fade-in effect */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 100vh; /* Full viewport height */
+            background-color: #f8f9fa; /* Light grey background color */
+            display: flex; /* Use flexbox for centering */
         }
+
         .login-container {
-            width: 300px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Fixed width for the login container */
+            padding: 70.9px; /* Padding inside the container */
+            background-color: white; /* White background for the container */
+            border-radius: 10px; /* Rounded corners for the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
+
         .login-container h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 24px; /* Font size for the heading */
+            margin-bottom: 20px; /* Space below the heading */
         }
+
         .login-container p {
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Space below the paragraph */
         }
+
         .form-control {
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Space below each form control */
         }
+
         .btn-primary {
-            width: 100%;
+            width: 100%; /* Full width button */
         }
     </style>
 </head>
+
 <body>
+    <!-- Main container for the login form -->
     <div class="login-container text-center">
         <h1>LOGIN</h1>
         <p>Welcome to Piloto</p>
+        <!-- Display flash messages if there are any -->
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <div class="alert alert-danger" role="alert">
-              {{ messages[0] }}
+              {{ messages[0] }} <!-- Display the first flash message -->
             </div>
           {% endif %}
         {% endwith %}
+        <!-- Login form with POST method to the login route -->
         <form id="login-form" method="POST" action="{{ url_for('login') }}">
+            <!-- Username input field -->
             <input type="text" class="form-control" name="username" placeholder="username" required>
+            <!-- Password input field -->
             <input type="password" class="form-control" name="password" placeholder="password" required>
+            <!-- Submit button -->
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
 
+    <!-- Including jQuery and Bootstrap JS for interactive elements and animations -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
+        // jQuery function to execute when the document is ready
         $(document).ready(function() {
-            $('body').fadeIn(1000); // Fade in effect on load
+            // Fade in the body over 1 second (1000 milliseconds)
+            $('body').fadeIn(1000);
         });
+
+        // Add an event listener to the login form for the submit event
         document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var form = this;
+            event.preventDefault(); // Prevent the default form submission behavior
+            var form = this; // Reference to the form element
+            // Fade out the body over 1 second (1000 milliseconds) and then submit the form
             $('body').fadeOut(1000, function() {
-                form.submit();
+                form.submit(); // Submit the form after the fade-out effect completes
             });
         });
     </script>
