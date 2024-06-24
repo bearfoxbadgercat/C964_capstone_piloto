@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--#  Part C: Industry-appropriate security features-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,16 +17,16 @@
             justify-content: center; /* Center content horizontally */
             align-items: center; /* Center content vertically */
             height: 100vh; /* Full viewport height */
-            background-color: #f8f9fa; /* Light grey background color */
+            background-color: white; /* Light grey background color */
             display: flex; /* Use flexbox for centering */
         }
 
         .login-container {
             width: 300px; /* Fixed width for the login container */
             padding: 70.9px; /* Padding inside the container */
-            background-color: white; /* White background for the container */
+            background-color: aliceblue; /* White background for the container */
             border-radius: 10px; /* Rounded corners for the container */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
 
         .login-container h1 {
@@ -44,6 +44,7 @@
 
         .btn-primary {
             width: 100%; /* Full width button */
+            color: white; /* White text color */
         }
     </style>
 </head>
@@ -61,6 +62,7 @@
             </div>
           {% endif %}
         {% endwith %}
+        <!--#  Part C: Industry-appropriate security features-->
         <!-- Login form with POST method to the login route -->
         <form id="login-form" method="POST" action="{{ url_for('login') }}">
             <!-- Username input field -->
@@ -68,7 +70,7 @@
             <!-- Password input field -->
             <input type="password" class="form-control" name="password" placeholder="password" required>
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" style="background:steelblue">Login</button>
         </form>
     </div>
 

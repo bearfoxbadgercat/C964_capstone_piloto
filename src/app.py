@@ -1,104 +1,81 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
-import os
+import logging
+
 import pandas as pd
+import descriptive_methods
+import time
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, make_response
+import data_exploration_prep as eda
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Initialize the Flask application
 app = Flask(__name__, template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'your_secret_key'  # Secret key for session management
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 
 # Route for the home page
 @app.route('/')
 def home():
-    # Redirect to dashboard if user is logged in
     if 'username' in session:
-        return redirect(url_for('dashboard'))
-    # Otherwise, render the login page
-    return render_template('login.html')
+        return redirect(url_for('dashboard_route'))
+    else:
+        return render_template('login.html')
 
 
 # Route for handling login
 @app.route('/login', methods=['POST'])
 def login():
-    # Get username and password from the form
     username = request.form['username']
     password = request.form['password']
-    # Simple authentication logic
+    logging.debug(f"Login attempt with username: {username}")
     if username == 'test' and password == 'test':
-        # Store username in session and redirect to dashboard
         session['username'] = username
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard_route'))
     else:
-        # Flash message for invalid credentials and redirect to home
         flash('Invalid username or password!')
         return redirect(url_for('home'))
 
 
-# Route for the dashboard
 @app.route('/dashboard')
-def dashboard():
-    # Check if user is logged in
+def dashboard_route():
+    eda.prepare_data()
     if 'username' in session:
-        # Render the main dashboard page
-        return render_template('main.html')
-    # Redirect to home if not logged in
+        # Generate Data Dashboard Charts
+        descriptive_methods.save_sex_distribution_chart()  # Sex distribution chart
+        descriptive_methods.save_age_distribution_chart()  # Age distribution chart
+        descriptive_methods.save_study_time_distribution_chart()  # Study time distribution chart
+        descriptive_methods.save_G1_distribution_chart()  # G1 distribution chart
+        descriptive_methods.save_G2_distribution_chart()  # G2 distribution chart
+        descriptive_methods.save_G3_distribution_chart()  # G3 distribution chart
+        descriptive_methods.save_heat_maps()  # Heat maps
+        descriptive_methods.save_study_time()  # Study time
+        # Render the dashboard template
+        return render_template('dashboard_v3.1.html')
+
     return redirect(url_for('home'))
+
+
+@app.route('/api/data')
+def get_data():
+    file_path = '../data/student_data_raw.csv'
+    df = eda.load_data(file_path)
+    data_head = eda.initial_data_exploration(df)
+    data_info = eda.get_dataframe_info(df)
+    num_stats = eda.num_stats_analysis(df)
+    cat_col_analysis = eda.cat_column_analysis(df)
+    oh_data_head = eda.one_hot_encode(df)
+
+    return jsonify({'head': data_head, 'info': data_info, 'num_stats_analysis': num_stats,
+                    'cat_col_analysis': cat_col_analysis, 'oh_data_head': oh_data_head})
 
 
 # Route for logging out
 @app.route('/logout')
 def logout():
-    # Remove username from session
-    session.pop('username', None)
-    # Redirect to home
+    session.clear()  # Clear all session data
     return redirect(url_for('home'))
-
-
-# Route for the Copilot page
-@app.route('/copilot')
-def copilot():
-    # Check if user is logged in
-    if 'username' in session:
-        # Render the Copilot page
-        return render_template('copilot.html')
-    # Redirect to home if not logged in
-    return redirect(url_for('home'))
-
-
-# Route for the Pathfinder page
-@app.route('/pathfinder')
-def pathfinder():
-    # Check if user is logged in
-    if 'username' in session:
-        # Render the Pathfinder page
-        return render_template('pathfinder.html')
-    # Redirect to home if not logged in
-    return redirect(url_for('home'))
-
-
-# Route for the Autopilot page
-@app.route('/autopilot')
-def autopilot():
-    # Check if user is logged in
-    if 'username' in session:
-        return render_template('autopilot.html')
-    # Redirect to home if not logged in
-    return redirect(url_for('home'))
-
-
-# Route to load data
-@app.route('/load_data', methods=['GET'])
-def load_data():
-    try:
-        # Path to the CSV file
-        file_path = os.path.abspath(os.path.join(app.root_path, '..', 'data', 'student_data_raw.csv'))
-        # Read the CSV file using pandas
-        df = pd.read_csv(file_path)
-        # Convert the DataFrame to a JSON string for easier handling in JavaScript
-        data = df.head().to_json()
-        return jsonify(data)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 
 # Run the application

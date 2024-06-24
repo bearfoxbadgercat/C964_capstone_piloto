@@ -1,0 +1,565 @@
+<!--Write the standard basic generic skeleton below-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Piloto</title>
+        <!--CSS Stylesheets-->
+        <link rel="stylesheet" href="../static/css/navbar.css">
+        <link rel="stylesheet" href="../static/css/icons.css">
+        <link rel="stylesheet" href="../static/css/main_v1.css">
+        <!--Google Style Sheets-->
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <!--Javascript-->
+        <script src="../static/js/navbar-scripts.js"></script>
+        <!--Bootstrap Stylesheets-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <!--Bootstrap Javascript-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+        <style>
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+        </style>
+    </head>
+
+    <body>
+        <!--Navigation Sidebar -->
+        
+        <nav class="navigation">
+
+            <!--Navigation Item logo-->
+            <div class="nav-item" id="nav-logo">
+                <img src="../static/logo2.png" id="logo" >
+            </div>
+            <!--Navigation Item logo END-->
+
+
+            <!--Navigation Main Menu  -->
+            <div class="nav-menu">
+
+
+                <!-- Navigation Item data-dashboard -->
+                <div class="nav-item" id="data-dashboard" onclick="showFeature('data-dashboard-f')">
+                    <span class="material-symbols-outlined" style="font-size: 200%"> dashboard </span>
+                    <p style="font-size:12px; color:white; font-family:'roboto'">Data Dashboard</p>
+                </div>
+                <!-- Navigation Item data-dashboard END -->
+
+
+                <!-- Navigation Item data-pilot -->
+                <div class="nav-item" id="data-pilot" onclick="showFeature('data-pilot-f')">
+                    <span class="material-symbols-outlined" style="font-size: 200%"> analytics </span>
+                    <p style="font-size:12px; color:white; font-family:'roboto'">Data Pilot</p>
+                </div>
+                <!-- Navigation Item data-pilot END -->
+
+
+
+                <!-- Navigation Item model trainer -->
+                <div class="nav-item" id="model-trainer">
+                    <span class="material-symbols-outlined" style="font-size: 200%" onclick="showFeature('model-trainer-f')"> model_training </span>
+                    <p style="font-size: 12px; color: white; font-family: Roboto;">Model Trainer</p>
+                </div>
+                <!-- Navigation Item model-training END -->
+
+
+                <!-- Navigation Item navigator -->
+                <div class="nav-item" id="navigator" onclick="showFeature('navigator-f')">
+                    <span class="material-symbols-outlined" style="font-size: 200%"> explore </span>
+                    <p style="font-size: 12px; color: white; font-family:roboto">Navigator</p>
+                </div>
+                <!-- Navigation Item navigator END -->
+
+
+            </div>
+            <!-- Navigation Main Menu END -->
+
+
+            <!-- Navigation Item logout -->
+            <div class="nav-item" id="logout" onclick="showFeature('db-navigator)">
+                <a href="/logout" class="btn btn-danger">
+                    <span class="material-symbols-outlined" style="font-size: 200%"> logout </span>
+                    <p style="font-size: 14px; color: white; font-family: Roboto;">Logout</p>
+                </a>
+            </div>
+            <!-- Navigation Item logout END -->
+
+        </nav>
+        <!--Navigation Sidebar END-->
+
+        <!--Main Content -->
+        <div class="main">
+
+            <!--# Part C: A user-friendly, functional dashboard that includes three visualization types-->
+            <!--Data Dashboard -->
+            <div class="feature" id="data-dashboard-f">
+                <!--Grid-->
+                <div class="grid-container">
+
+                    <!--Card 1-->
+                    <div class="card" id="card-db1">
+                        <!--Chart 1-->
+                        <div class="card-chart" id="db1-chart">
+                             <img src="{{ url_for('static', filename='chart1.png') }}" alt="Sex Distribution Chart" >
+                        </div>
+                    </div>
+                    <!--Card 1 END-->
+
+                    <!--Card 2-->
+                    <div class="card" id="card-db2">
+                                <img src="{{ url_for('static', filename='chart2.png') }}" alt="Study Time Chart" >
+                    </div>
+                    <!--Card 2 END-->
+
+                    <!--Card 3-->
+                    <div class="card" id="card-db3">
+                             <img src="{{ url_for('static', filename='chart3.png') }}" alt="Study Time Chart" >
+                    </div>
+                    <!--Card 3 END-->
+
+                    <!--Card 4-->
+                    <div class="card" id="card-db4">
+                             <img src="{{ url_for('static', filename='chart4.png') }}" alt="Test 1 Score Distribution" >
+                    </div>
+                    <!--Card 4 END-->
+
+                    <!--Card 5-->
+                    <div class="card" id="card-db5">
+                             <img src="{{ url_for('static', filename='chart5.png') }}" alt="Sex Distribution Chart" >
+                    </div>
+                    <!--Card 5 END-->
+
+                    <!--Card 6-->
+                    <div class="card" id="card-db6">
+                             <img src="{{ url_for('static', filename='chart6.png') }}" alt="Sex Distribution Chart" >
+                    </div>
+                    <!--Card 6 END-->
+
+                </div>
+                <!--Grid END-->
+            </div>
+            <!--Data Dashboard END -->
+
+            <!--Data Pilot -->
+            <div class="feature" id="data-pilot-f">
+                <div dp-grid-container>
+
+                    <!--Card 1 Welcome/Data Pilot Description-->
+                    <div class="dp-card" id="dp-card-1">
+                        <h1>Welcome To Data Pilot</h1>
+                        <p>Data Pilot will help you explore and understand the data. As the feature guides you through the dataset,
+                        Data Pilot will take actions such as featurizing, parsing, and wrangling the data to ensure proper preparation.</p>
+                    </div>
+                    <!--Card 1END-->
+
+                    <!-- Card 2 Data Head -->
+                    <div class="dp-card" id="dp-card-2">
+                        <h2>Initial Data Exploration</h2>
+                        <p>We will first use the pandas .head() method to examine the first few rows of the
+                            dataset and familiarize ourselves with its structure.
+                        </p>
+                        <code class="code-box">
+                            # First set option to display all columns<br>
+                            pd.set_option('display.max_columns', None)<br><br>
+
+                            # Load the dataset<br>
+                            file_path = "../data/student_data_raw.csv"<br>
+                            df = pd.read_csv(file_path)<br><br>
+
+                            # Display the first few rows of the dataset<br>
+                            df.head()
+                        </code>
+                        <!-- Dataset head -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" id="data-table">
+                                        <thead>
+                                            <tr id="table-head">
+                                                <!-- Column headers will be inserted here -->
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body">
+                                            <!-- Table rows will be inserted here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><br>
+                        <!-- Dataset head END-->
+                       <div class="observation-section">
+                            <h3>Observations</h3><br>
+                            <h4>General Observations</h4>
+                            <p>Each record represents an individual student, with various attributes including demographics,
+                                family background, and academic performance across three separate exams.</p>
+
+                            <h4>Data Type</h4>
+                            <p>The dataset contains a mix of seemingly numerical and categorical variables.
+                               Upon verifying data types, we may need to convert or preprocess some features.</p>
+
+                            <h4>Consistency</h4>
+                            <p>The data appears to be consistent based on the initial inspection. A thorough check on the entire dataset will be needed to confirm that all categorical values are standardized and numerical values are correctly formatted.</p>
+
+                            <h4>Order</h4>
+                            <p>The data is not ordered chronologically or sequentially, as there are no timestamps or dates indicating a specific order.</p>
+
+                            <h4>Missing Values</h4>
+                            <p>The data seems to be complete in the sampled rows. We will verify this with a thorough review and account for any missing values.</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 Data Head END -->
+
+                    <!-- Card 3 Data Info -->
+                    <div class="dp-card" id="dp-card-3">
+                       <h2>Data Info</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                           urna vitae lorem vestibulum pharetra. Donec scelerisque, justo non
+                           ultrices ultricies, metus elit interdum dui, ac varius ex enim nec massa.
+                           Praesent fringilla orci eget diam malesuada, ac lacinia felis commodo.
+                         </p>
+                        <code class="code-box">
+
+                        </code>
+                        <br>
+                        <div class="container">
+                            <div class="card" id="data-info-card">
+                                <pre id="data-info">
+                                    <!-- DataFrame info will be inserted here -->
+                                </pre>
+                            </div>
+
+                             <div class="observation-section" id="info-observations">
+                                <h3>Observations</h3><br>
+                                <h4>General Observations</h4>
+                                <p>Each record represents an individual student, with various attributes including demographics,
+                                    family background, and academic performance across three separate exams.</p>
+
+                                <h4>Data Type</h4>
+                                <p>The dataset contains a mix of seemingly numerical and categorical variables.
+                                   Upon verifying data types, we may need to convert or preprocess some features.</p>
+
+                                <h4>Consistency</h4>
+                                <p>The data appears to be consistent based on the initial inspection. A thorough check on the entire dataset will be needed to confirm that all categorical values are standardized and numerical values are correctly formatted.</p>
+
+                                <h4>Order</h4>
+                                <p>The data is not ordered chronologically or sequentially, as there are no timestamps or dates indicating a specific order.</p>
+
+                                <h4>Missing Values</h4>
+                                <p>The data seems to be complete in the sampled rows. We will verify this with a thorough review and account for any missing values.</p>
+                             </div>
+
+                        </div>
+
+                    </div>
+                    <!-- Card 3 Data Info END -->
+
+                    <!--Visualization - Age Distribution-->
+                    <div class="dp-card" id="dp-card-7">
+                        <h2>Age Distribution</h2>
+                        <div class="container">
+                            <div class="card" id="age-dist-card">
+                                <img src="{{ url_for('static', filename='chart2.png') }}" alt="Study Time Chart" >
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Card 4 Age Distribution -->
+
+                    <!-- Card 4 Numerical Column Analysis -->
+                    <div class="dp-card" id="dp-card-5">
+                        <h2>Numerical Column Analysis</h2>
+                        <div class="container">
+                            <div class="card" id="num-analysis-card">
+                                <pre id="num-stats-analysis">
+                        <!-- Numerical column analysis will be inserted here -->
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 Numerical Column Analysis END -->
+
+                    <!-- Card 5 Categorical Column Analysis -->
+                    <div class="dp-card" id="dp-card-4">
+                        <h2>Categorical Column Analysis</h2>
+                        <div class="container">
+                            <div class="card" id="cat-analysis-card">
+                                <pre id="cat-analysis">
+                        <!-- Categorical column analysis will be inserted here -->
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 5 Categorical Column Analysis END -->
+
+                    <!--Card 6 OH Encoding-->
+                    <div class="dp-card" id="dp-card-2">
+
+                        <h2>One Hot Encoding</h2>
+                        <p>We will first use the pandas .head() method to examine the first few rows of the
+                            dataset and familiarize ourselves with its structure.</p>
+
+                        <code class="code-box">
+                            # First set option to display all columns<br>
+                            pd.set_option('display.max_columns', None)<br><br>
+
+                            # Load the dataset<br>
+                            file_path = "../data/student_data_raw.csv"<br>
+                            df = pd.read_csv(file_path)<br><br>
+
+                            # Display the first few rows of the dataset<br>
+                            df.head()
+                        </code>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="oh-data-table">
+                                <thead>
+                                    <tr id="oh-table-head">
+                                    <!-- Column headers will be inserted here -->
+                                    </tr>
+                                </thead>
+                                <tbody id="oh-table-body">
+                                <!-- Table rows will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--Card 6 OH Encoding END-->
+
+                    <!--Card 7 Heat Maps Controllable-->
+                    <div class="dp-card" id="dp-card-8">
+                        <h2>Heat Maps</h2>
+                        <p>Some Text here lorem ipsum lorem ipsum</p>
+
+                        <!--Heat Map 1 - Controllable -->
+                        <div class="heat-map-card" id="heat-map-1">
+                            <!--Map 1 Content Goes Here-->
+                            <img src="{{ url_for('static', filename='heatmap-c.png') }}" alt="Heat Map 1" >
+                        </div>
+                        <!--Heat Map 1 END-->
+
+                        <!--Study Time vs Average Grade-->
+                        <div class='study-time-card' id="study-time-card">
+                            <img src="{{ url_for('static', filename='study-time.png') }}" alt="Study Time Chart" >
+                        </div>
+                        <!--Study Time vs Average Grade END-->
+                    </div>
+
+
+
+
+                    </div>
+                    <!--Card 7 Heat Maps END-->
+
+                    <!--Card 7 Heat Maps Uncontrollable-->
+                    <div class="dp-card" id="dp-card-7">
+                        <!--Heat Map 2 - Personal-->
+                        <div class="heat-map-card" id="heat-map-2">
+                            <!--Map 2 Content Goes Here-->
+                            <img src="{{ url_for('static', filename='heatmap-p.png') }}" alt="Heat Map 2" >
+                        </div>
+                        <!--Heat Map 2 END-->
+
+                        <!--Heat Map 3 - Family-->
+                        <div class="heat-map-card" id="heat-map-3">
+                            <!--Map 3 Content Goes Here-->
+                            <img src="{{ url_for('static', filename='heatmap-f.png') }}" alt="Heat Map 3" >
+                        </div>
+                        <!--Heat Map 3 END-->
+                    </div>
+
+                    <!-- Save Cleaned Dataset -->
+                     <div class="dp-card" id="save-cleaned-dataset">
+                        <code class="code-box">
+                            # Save the cleaned dataset<br>
+                            cleaned_file_path = "../data/student_data_cleaned.csv"<br>
+                            df.to_csv(cleaned_file_path, index=False)
+                        </code>
+                     </div>
+                    <!--Save Cleaned Dataset  END-->
+                    <br>
+            </div>
+
+            <!--Data Pilot END -->
+
+            <!--Model Trainer -->
+            <div class="feature" id="model-trainer-f">
+                <div class="grid-container" id="mt-grid">
+                    <!--Build Model Card-->
+                        <div class="mt-card" id="card-build-model">
+
+                            <!--Section 1-->
+                            <div class="mt-card-content" id="bm-1" >
+                                <h1>Build Model</h1>
+                                <!--Dropdown1-->
+                                <div class="dropdown">
+                                    <button class="dropbtn">Select an option</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Option 1</a>
+                                        <a href="#">Option 2</a>
+                                        <a href="#">Option 3</a>
+                                    </div>
+                                </div>
+                        <!--Dropdown1 END-->
+                           </div>
+                            <!--Section 1 END-->
+
+                            <!--Section 2-->
+                            <div class="mt-card-content" id="bm-2">
+                                <label for="mySlider">Select Value:</label>
+                                <input type="range" id="mySlider" name="mySlider" min="50" max="200" value="50" step="50" oninput="updateValue(this.value)">
+                                <span id="sliderValue">50</span>
+                           </div>
+                            <!--Section 2 END-->
+
+                            <!--Section 3-->
+                            <div class="mt-card-content" id="bm-3">
+                                <button>Build</button>
+                           </div>
+                        </div>
+                            <!--Section 3 END-->
+
+                    <!--Build Model Card END -->
+
+                    <!--Test MAE Card-->
+                        <div class="mt-card" id="card-mae">
+
+                            <!--Section 1-->
+                            <div class="mt-card-content" id="mae-1" >
+                                <h1>Test M.A.E.</h1>
+                           </div>
+                            <!--Section 1 END-->
+
+                            <!--Section 2-->
+                            <div class="mt-card-content" id="mae-2">
+                                <div class="score-container">
+                                </div>
+                                <h2>SCORE</h2>
+                           </div>
+                            <!--Section 2 END-->
+
+                            <!--Section 3-->
+                            <div class="mt-card-content" id="mae-3">
+                                <button>Test</button>
+                           </div>
+                        </div>
+                            <!--Section 3 END-->
+
+                    <!--Test MAE Card END -->
+                    <!--Test Save Card-->
+                        <div class="mt-card" id="card-save">
+
+                            <!--Section 1-->
+                            <div class="mt-card-content" id="save-1" >
+                                <h1>SAVE MODEL</h1>
+                           </div>
+                            <!--Section 1 END-->
+
+                            <!--Section 2-->
+                            <div class="mt-card-content" id="save-2">
+                                <button>Save</button>
+                           </div>
+                            <!--Section 2 END-->
+
+                            <!--Section 3-->
+                            <div class="mt-card-content" id="save-3">
+                                <button>Cancel</button>
+                           </div>
+                        </div>
+                            <!--Section 3 END-->
+
+                    <!--Test MAE Card END -->
+
+
+
+
+
+
+                </div>
+            </div>
+            <!--Model Trainer END -->
+
+            <!--Navigator -->
+            <div class="feature" id="navigator-f">
+                <!--Grid-->
+                <div class="grid-container" id="nav-grid">
+
+                    <!--Card 1-->
+                    <div class="card" id="nav-card-1">
+                        <!--Dropdown1-->
+                        <div class="dropdown">
+                            <button class="dropbtn">Select an option</button>
+                            <div class="dropdown-content">
+                                <a href="#">Option 1</a>
+                                <a href="#">Option 2</a>
+                                <a href="#">Option 3</a>
+                            </div>
+                        </div>
+                        <!--Dropdown1 END-->
+
+                        <!--Dropdown2-->
+                        <div class="dropdown">
+                            <button class="dropbtn">Select an option</button>
+                            <div class="dropdown-content">
+                                <a href="#">Option 1</a>
+                                <a href="#">Option 2</a>
+                                <a href="#">Option 3</a>
+                            </div>
+                        </div>
+                        <!--Dropdown2 END-->
+
+                        <!--Dropdown3-->
+                        <div class="dropdown">
+                            <button class="dropbtn">Select an option</button>
+                            <div class="dropdown-content">
+                                <a href="#">Option 1</a>
+                                <a href="#">Option 2</a>
+                                <a href="#">Option 3</a>
+                            </div>
+                        </div>
+                        <!--Dropdown3END-->
+
+                        <!--Dropdown3-->
+                        <div class="dropdown">
+                            <button class="dropbtn">Select an option</button>
+                            <div class="dropdown-content">
+                                <a href="#">Option 1</a>
+                                <a href="#">Option 2</a>
+                                <a href="#">Option 3</a>
+                            </div>
+                        </div>
+                        <!--Dropdown3END-->
+
+                        <!--Dropdown2-->
+                    </div>
+                    <!--Card 1 END-->
+
+                    <!--Card 2-->
+                    <div class="card" id="nav-card-2">
+                    Predict button
+                    </div>
+                    <!--Card 2 END-->
+
+                    <!--Card 3-->
+                    <div class="card" id="nav-card-3">
+                        Score
+                    </div>
+                    <!--Card 3 END-->
+
+                </div>
+                <!--Grid END-->
+            </div>
+            <!--Navigator END -->
+        <!--Main Content END-->
+        </div>
+
+
+
+    </body>
+</html>

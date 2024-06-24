@@ -1,0 +1,318 @@
+/*========================
+HTML and Body Styles
+========================*/
+html {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: lightsteelblue;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: orange;
+}
+
+/*========================
+Main Styles
+========================*/
+
+.main{
+    width: 90%;
+    height: 100%;  /* Ensures the container fills the viewport height */
+    background-color: aliceblue;
+    margin: 0% 0% 0% 10%; /* 0% top, 0% right, 0% bottom, 0% left */
+    padding: 0%;
+}
+
+/*========================
+Dashboard Feature Styles
+========================*/
+.feature{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-color: lightsteelblue;~
+    margin: 0% 0% 0% 0%;
+    padding: 5%;
+    align-content: center center;
+}
+
+
+/*========================
+Data Dashboard Styles
+========================*/
+
+.grid-container {
+    display: grid;
+    background-color: lightsteelblue;
+    width: 100%;
+    height: 100%;
+    gap: 5%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: min(100%, 100%);
+
+    }
+
+.card {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden; /* This will ensure that any overflow content is hidden */
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image horizontally if needed */
+}
+
+
+.card-chart {
+
+}
+
+
+
+
+
+/*========================
+Data Pilot Styles
+========================*/
+#feature-datapilot{
+
+}
+
+.dp-grid-container{
+display:grid
+gap: 1.5rem;
+grid-template-columns: 1fr;
+padding-block: 2rem;
+width: min(95%, 70rem)
+margin-inline: auto;
+
+}
+
+.dp-card{
+display: flex;
+background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+padding: 1rem;
+margin: 5rem;
+}
+
+.dp-card img{
+    max-height: 75%;
+    max-width: 75%;
+    display: block;
+    margin: 0 auto;
+
+}
+
+#dp-card-1{
+display: block;
+}
+
+#dp-card-2{
+display: block;
+
+}
+#dp-card-3{
+display: block;
+
+}
+
+#data-info-card{
+display: flex;
+outline: 1px solid black;
+width:40%;
+padding: 2rem;
+}
+
+.code-box{
+    display: block;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1rem;
+    margin: 1rem;
+    outline: 1px solid black;
+}
+
+
+/*========================
+Model Trainer Styles
+========================*/
+#model-trainer-f {
+}
+
+#mt-grid.grid-container {
+    display: grid;
+    height: 100%; /* or another specific height */
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr; /* ensures rows stretch vertically */
+    width: min(95%, 70rem)
+    margin-inline: auto;
+}
+
+.mt-card {
+    display: grid;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#bm-1{
+/*    background-color: red;*/
+}
+
+#bm-2{
+/*    background-color: orange;*/
+}
+
+#bm-3{
+/*    background-color: yellow;*/
+}
+
+#mae-1{
+/*    background-color: green;*/
+}
+
+#mae-2{
+/*    background-color: blue;*/
+    padding: 1rem;
+}
+
+#mae-3{
+/*
+    background-color: purple;
+*/
+}
+
+#save-1{
+/*
+    background-color: lightblue;
+*/
+}
+
+#save-2{
+/*
+    background-color: lightgreen;
+*/
+}
+
+#save-3{
+/*
+    background-color: lightyellow;
+*/
+}
+
+.score-container{
+    background-color: white;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%;
+    outline: 1px solid black;
+
+}
+
+
+
+
+
+/*========================
+Navigator Styles
+========================*/
+#navigator-f.feature{
+
+}
+
+/*========================
+Universal Styles
+========================*/
+* {
+    box-sizing: border-box;
+    font-family: roboto, sans-serif;
+    line-height: 1.4; /* or 140% */
+}
+
+a {
+    color: inherit; /* This will make the link inherit the color of the surrounding text */
+    text-decoration: none; /* This will remove the underline */
+}
+
+/*========================
+Dropdown Styles
+========================*/
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #2980b9;
+}
+
+.table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+
+.container{
+display: flex;
+gap: 1.5rem;
+}
+
+#info-observations{
+max-width: 50%;
+
+}

@@ -1,0 +1,22 @@
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 50px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 50px;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: column;
+}
+
+.material-symbols-outlined {
+    font-size: 50px; /* Preferred icon size */
+    cursor: pointer;
+}
+
+.material-symbols-outlined:hover {
+    color: #ddd;
+}

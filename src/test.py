@@ -1,12 +1,20 @@
-from data_preprocessing import load_and_preprocess_data
+from flask import Flask
+from sklearn.ensemble import RandomForest
 
-# Filepath to the data
-data_filepath = '../data/student_data_raw.csv'
+app = Flask(__name__)
 
-# Load and preprocess data
-student_df, X_train, X_val, y_train, y_val = load_and_preprocess_data(data_filepath)
 
-# Access the DataFrame
-print("DataFrame Head:")
-# print(student_df.head())
-print(student_df.sample(5))
+@app.route('/')
+def home():
+    return 'Hello, World!'
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# Let's build a random forest regression with control of leaves
+rf = RandomForest(n_estimators=100, max_depth=10, min_samples_leaf=50)
+
+# We need to train the model with some data to make predictions
+# Let's use a dataset from sklearn
+
