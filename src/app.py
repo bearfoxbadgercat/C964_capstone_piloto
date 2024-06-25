@@ -104,6 +104,12 @@ def get_student(index):
         internet = df.iloc[index]['internet']
         activities = df.iloc[index]['activities']
         paid = df.iloc[index]['paid']
+        # Get the average grade for the student at the given index from g1, g2, and g3
+        average_grade = (df.iloc[index]['G1'] + df.iloc[index]['G2'] + df.iloc[index]['G3']) / 3
+
+        # Round the average_grade
+        average_grade = round(average_grade, 2)
+
         # Need to make study_time a string to jsonify it
         study_time = str(study_time)
         internet = str(internet)
@@ -112,7 +118,8 @@ def get_student(index):
 
         print(f"Study time: {study_time}, Internet: {internet}, Activities: {activities}, Paid: {paid}")
         # Jsonify the response
-        return jsonify({'study_time': study_time, 'internet': internet, 'activities': activities, 'paid': paid})
+        return jsonify({'study_time': study_time, 'internet': internet, 'activities': activities,
+                        'paid': paid, 'average_grade': average_grade})
     except Exception as e:
         return jsonify({'error': str(e)})
 
@@ -133,12 +140,11 @@ def predict_grade():
 
         # Predict the grade using the predict_score function
         prediction = ml.predict_score(row_number, study_time, internet, activities, paid, model_name)
-        print("meow")
-        # Print the prediction to the console
-        print(f"The predicted score for student {row_number} is {prediction[0]}")
+
+        rounded_prediction = round(prediction[0], 2)  # Assuming prediction is an array with at least one element
 
         # Return the prediction result
-        return jsonify({'prediction': prediction[0]})
+        return jsonify({'prediction': rounded_prediction})
     except Exception as e:
         print("Error:", e)  # It's also helpful to print out errors to the console
         return jsonify({'error': str(e)}), 400

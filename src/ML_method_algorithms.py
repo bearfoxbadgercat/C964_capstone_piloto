@@ -106,7 +106,6 @@ def predict_score(row_number, study_time, internet, activities, paid, model_name
     student.loc[row_number, 'paid'] = paid
 
     # Drop G1, G2, G3, absences, id, freetime
-    student = student.drop(['G1', 'G2', 'G3'], axis=1)
     student = student.drop(['absences'], axis=1)
     student = student.drop(['id'], axis=1)
     student = student.drop(['freetime'], axis=1)
@@ -118,6 +117,9 @@ def predict_score(row_number, study_time, internet, activities, paid, model_name
     # Drop all rows that are not the row_number passed in
     student = student.drop(student.index[student.index != row_number])
 
+    # Get student average grade
+    average_grade = (student['G1'] + student['G2'] + student['G3']) / 3
+    student = student.drop(['G1', 'G2', 'G3'], axis=1)
     print(student.head())
 
     # Load the model
@@ -127,13 +129,10 @@ def predict_score(row_number, study_time, internet, activities, paid, model_name
     # Load the model
     model = joblib.load(model_filename)
 
-    # Make a prediction
+    # Make a prediction and round it to 2 decimal places
     prediction = model.predict(student)
 
-    # Give me one of the model names from model_dir: rf_model_20_leafs.joblib, rf_model_2_leafs.joblib, rf_model_3_leafs.joblib
-
     return prediction
-
 
 
 predict_score(50, 3, 'yes', 'yes', 'yes', 'rf_model_20_leafs.joblib')

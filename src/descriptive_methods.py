@@ -33,10 +33,11 @@ def save_sex_distribution_chart():
     sns.set(style="whitegrid")
 
     # Create the pie chart
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(10, 10))
     colors = sns.color_palette('pastel')[0:len(sex_counts)]
-    plt.pie(sex_counts, labels=sex_counts.index, autopct='%1.1f%%', startangle=140, colors=colors)
-    plt.title('Distribution of Sex')
+    plt.pie(sex_counts, labels=sex_counts.index,  autopct='%1.1f%%', startangle=140,
+            colors=colors, textprops={'fontsize': 22})
+    plt.title('Distribution of Sex', fontsize=26)
 
     # Save the figure as a PNG file
     plt.savefig('../frontend/static/chart1.png')
@@ -62,12 +63,14 @@ def save_age_distribution_chart():
     sns.set(style="whitegrid")
 
     # Create a scatter plot
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 10))
     colors = sns.color_palette('pastel')[0:len(age_counts)]
-    plt.scatter(age_counts.index, age_counts, color=colors)
-    plt.xlabel('Age')
-    plt.ylabel('Count')
-    plt.title('Distribution of Age')
+    plt.scatter(age_counts.index, age_counts, color=colors, s=200)
+    plt.xlabel('Age', fontsize=22)
+    plt.ylabel('Count', fontsize=22)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.title('Distribution of Age', fontsize=26)
 
     # Save the figure as a PNG file
     plt.savefig('../frontend/static/chart2.png')
@@ -94,12 +97,12 @@ def save_study_time_distribution_chart():
     sns.set(style="whitegrid")
 
     # Create the bar chart
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 10))
     colors = sns.color_palette('pastel')[0:len(study_time_counts)]
     plt.bar(study_time_counts.index, study_time_counts, color=colors)
-    plt.xlabel('Study Time')
-    plt.ylabel('Count')
-    plt.title('Distribution of Study Time')
+    plt.xlabel('Study Time', fontsize=22)
+    plt.ylabel('Count', fontsize=22)
+    plt.title('Distribution of Study Time', fontsize=26)
 
     # Save the figure as a PNG file
     plt.savefig('../frontend/static/chart3.png')
@@ -117,73 +120,78 @@ def save_G1_distribution_chart():
      Returns None
      ========================================"""
 
-    data = pd.read_csv('../data/student_data_raw.csv')
+    plt.rcParams.update({'font.size': 22})  # Sets the global font size to 14
 
-    # Apply Seaborn styling
+    data = pd.read_csv('../data/student_data_raw.csv')
     sns.set(style="whitegrid")
 
-    # Create the histogram
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 10))
     sns.histplot(data['G1'], kde=True, stat='density')
-    plt.xlabel('Score')
-    plt.ylabel('Density')
-    plt.title('Distribution of G1')
+    plt.xlabel('Score', fontsize=22)  # Optionally set font size for axis labels
+    plt.ylabel('Density', fontsize=22)
+    plt.title('Test 1 - Score Distribution', fontsize=26)  # Set font size for title
+    # Let's adjust the ticks
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
 
-    # Save the figure as a PNG file
     plt.savefig('../frontend/static/chart4.png')
     plt.close()
 
 
 def save_G2_distribution_chart():
     """======================================
-    Generate a histogram: Distribution of G2 in the dataset
+     Generate a histogram: Distribution of G1 in the dataset
 
-    Procedure will read dataset and generate a histogram of the grade distribution from
-    the raw data from the second test. The chart will be saved as a PNG file in the frontend/static folder.
+     Procedure will read dataset and generate a histogram of the grade distribution from
+     the raw data from the first test. The chart will be saved as a PNG file in the frontend/static folder.
 
-    Returns None
-    Parameters: None
-    ========================================"""
+     Parameters: None
+     Returns None
+     ========================================"""
+
+    plt.rcParams.update({'font.size': 22})  # Sets the global font size to 14
+
     data = pd.read_csv('../data/student_data_raw.csv')
-
-    # Apply Seaborn styling
     sns.set(style="whitegrid")
 
-    # Create the histogram
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 10))
     sns.histplot(data['G2'], kde=True, stat='density')
-    plt.xlabel('Score')
-    plt.ylabel('Density')
-    plt.title('Distribution of G2')
+    plt.xlabel('Score', fontsize=22)  # Optionally set font size for axis labels
+    plt.ylabel('Density', fontsize=22)
+    plt.title('Test 2 - Score Distribution', fontsize=26)  # Set font size for title
+    # Let's adjust the ticks
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
 
-    # Save the figure as a PNG file
     plt.savefig('../frontend/static/chart5.png')
     plt.close()
 
 
 def save_G3_distribution_chart():
     """======================================
-    Generate a histogram: Distribution of G3 in the dataset
+     Generate a histogram: Distribution of G1 in the dataset
 
-    Procedure will read dataset and generate a histogram of the grade distribution from
-    the raw data from the third test. The chart will be saved as a PNG file in the frontend/static folder.
+     Procedure will read dataset and generate a histogram of the grade distribution from
+     the raw data from the first test. The chart will be saved as a PNG file in the frontend/static folder.
 
-    Returns None
-    Parameters: None
-    ========================================"""
+     Parameters: None
+     Returns None
+     ========================================"""
+
+    plt.rcParams.update({'font.size': 22})  # Sets the global font size to 14
+
     data = pd.read_csv('../data/student_data_raw.csv')
-
-    # Apply Seaborn styling
     sns.set(style="whitegrid")
 
-    # Create the histogram
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 10))
     sns.histplot(data['G3'], kde=True, stat='density')
-    plt.xlabel('Score')
-    plt.ylabel('Density')
-    plt.title('Distribution of G3')
+    plt.xlabel('Score', fontsize=22)  # Optionally set font size for axis labels
+    plt.ylabel('Density', fontsize=22)
+    plt.title('Test 3 - Score Distribution', fontsize=26)  # Set font size for title
+    # Let's adjust the ticks
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
 
-    # Save the figure as a PNG file
     plt.savefig('../frontend/static/chart6.png')
     plt.close()
 

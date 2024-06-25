@@ -14,7 +14,7 @@ function showFeature(featureId) {
 
 // Show the first feature by default
 window.onload = () => {
-    showFeature('data-pilot-f');
+    showFeature('data-dashboard-f');
 };
 
 // Add keyboard support for div buttons
@@ -175,6 +175,26 @@ function getStudent() {
         alert("Please enter a valid numeric ID between 0 and 390.");
     } else {
         document.getElementById('studentIdDisplay').value = studentId;
+        // Make the fetch request to get the student data
+        fetch('/api/get_student/' + studentId)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert("Error retrieving student data: " + data.error);
+            } else {
+                // Assuming the response includes the average score
+                if(data.averageScore !== undefined) {
+                    document.getElementById('averageScore').value = data.averageScore;
+                } else {
+                    document.getElementById('averageScore').value = 'Not available';
+                }
+                // Update other fields as necessary
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to fetch student data');
+        });
     }
 }
 
@@ -221,6 +241,11 @@ function fetchStudentData(index) {
             }
         }
 
+        // Update the the average grade input field
+        if(data.average_grade){
+            document.getElementById('averageScore').value = data.average_grade;
+        }
+
 
         // Update the paid radio buttons
         if(data.paid){
@@ -246,6 +271,8 @@ function updateInternetAccess(internetValue) {
         document.getElementById('internet_no').checked = true;
     }
 }
+
+
 
 
 function getStudent() {
@@ -301,6 +328,7 @@ function predict() {
             alert("Error: " + data.error);
         } else {
             alert("Predicted Score: " + data.prediction);
+            document.getElementById('predictedScore').value = data.prediction; // Update the predicted score input field
         }
     })
     .catch(error => {
@@ -308,6 +336,7 @@ function predict() {
         alert('Failed to fetch data');
     });
 }
+
 
 
 
