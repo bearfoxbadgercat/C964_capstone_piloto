@@ -300,11 +300,6 @@ def save_heat_maps():
 
     # Increase overall font size to 1.5
 
-
-
-
-
-
     # Increase label size
     plt.xticks(fontsize=30)
     plt.yticks(fontsize=30)
@@ -313,13 +308,12 @@ def save_heat_maps():
     plt.title('Correlation between Personal Features', fontsize=30)
     plt.tight_layout()
 
-
     plt.title('Correlation between Personal Features')
     plt.savefig('../frontend/static/heatmap-p.png')
     plt.close()
 
     # Create the heatmap family
-    plt.figure(figsize=(30, 30)) #
+    plt.figure(figsize=(30, 30))  #
     sns.heatmap(corr_f, annot=True, cmap='coolwarm')
     # Increase Font Size
     plt.rcParams['font.size'] = 20
@@ -334,7 +328,8 @@ def save_heat_maps():
     plt.savefig('../frontend/static/heatmap-f.png')
     plt.close()
 
-def  save_study_time():
+
+def save_study_time():
     """
 
     Returns
@@ -366,4 +361,3 @@ def  save_study_time():
     # Save the figure as a PNG file
     plt.savefig('../frontend/static/study-time.png')
     plt.close()
-

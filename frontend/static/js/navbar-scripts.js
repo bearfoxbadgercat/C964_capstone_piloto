@@ -121,5 +121,198 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching data:', error));
 });
 
-// Next thing I'm going to do is look at the one hot encoding table
+function selectOption(option) {
+    document.getElementById('dropdownButton').innerText = option;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/get-model-names')
+        .then(response => response.json())
+        .then(data => {
+            const dropdownContent = document.getElementById('dropdownContent');
+            dropdownContent.innerHTML = '';  // Clear any existing options
+            data.forEach(file => {
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = file;
+                link.onclick = () => {
+                    document.getElementById('dropdownButton').innerText = file;
+                };
+                dropdownContent.appendChild(link);
+            });
+        })
+        .catch(error => console.error('Error fetching dataset names:', error));
+});
+
+//  Updates the value of the slider
+function updateValue(value) {
+  document.getElementById('sliderValue').textContent = value;
+}
+
+
+function buildModel() {
+  var sliderValue = document.getElementById('mySlider').value;
+
+  fetch('/build_model', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: 'sliderValue=' + sliderValue
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Update the MAE score in the HTML
+    document.getElementById('maeScore').innerText = "MAE: " + data.result;
+  })
+  .catch(error => console.error('Error:', error));
+}
+
+function getStudent() {
+    var studentId = document.getElementById('studentIdInput').value;
+    // Check if the input is numeric and within the specified range
+    if (!/^\d+$/.test(studentId) || studentId < 0 || studentId > 390) {
+        alert("Please enter a valid numeric ID between 0 and 390.");
+    } else {
+        document.getElementById('studentIdDisplay').value = studentId;
+    }
+}
+
+function updateStudyTimeValue(value) {
+    document.getElementById('studyTimeValue').textContent = value;
+}
+
+function fetchStudentData(index) {
+    fetch('/api/get_student/' + index)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return; // Stop further execution in case of an error
+        }
+
+        // Update study time slider
+        if (data.study_time) {
+            var studyTime = parseInt(data.study_time, 10);
+            document.getElementById('studyTimeSlider').value = studyTime;
+            document.getElementById('studyTimeValue').textContent = studyTime;
+        }
+
+        // Update internet access radio buttons
+        if (data.internet) {
+            if (data.internet === 'yes') {
+                document.getElementById('internet_yes').checked = true;
+            } else if (data.internet === 'no') {
+                document.getElementById('internet_no').checked = true;
+            }
+        }
+
+        // Update the activities radio buttons
+        if (data.activities) {
+            if (data.activities === 'yes') {
+                document.getElementById('activities_yes').checked = true;
+            } else if (data.activities === 'no') {
+                document.getElementById('activities_no').checked = true;
+            }
+        }
+
+
+        // Update the paid radio buttons
+        if(data.paid){
+            if(data.paid === 'yes'){
+                document.getElementById('paid_yes').checked = true;
+            } else if(data.paid === 'no'){
+                document.getElementById('paid_no').checked = true;
+            }
+        }
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to fetch data');
+    });
+}
+
+function updateInternetAccess(internetValue) {
+    console.log("Received internet access value: ", internetValue); // This will show the value in the browser's console
+    if (internetValue === 'yes') {
+        document.getElementById('internet_yes').checked = true;
+    } else if (internetValue === 'no') {
+        document.getElementById('internet_no').checked = true;
+    }
+}
+
+
+function getStudent() {
+    var studentId = document.getElementById('studentIdInput').value;
+    if (!/^\d+$/.test(studentId) || studentId < 0 || studentId > 390) {
+        alert("Please enter a valid numeric ID between 0 and 390.");
+    } else {
+        document.getElementById('studentIdDisplay').value = studentId;
+        fetchStudentData(studentId);
+    }
+}
+
+function predict() {
+    var modelName = document.getElementById('dropdownButton').innerText;  // Capture the model name from the dropdown
+    var studentId = document.getElementById('studentIdDisplay').value;    // Capture the Student ID from the display input field
+    var studyTime = document.getElementById('studyTimeSlider').value;     // Capture the Study Time from the slider
+    var internetAccess = document.querySelector('input[name="internet"]:checked').value; // Determine which Internet Access radio button is checked
+    var activities = document.querySelector('input[name="activities"]:checked').value;    // Determine which Activities radio button is checked
+    var paidClasses = document.querySelector('input[name="paid"]:checked').value;         // Determine which Paid Classes radio button is checked
+
+    // Check if the Student ID or model name is empty
+    if (!studentId) {
+        alert("Please select a student first.");
+        return; // Stop the execution of the rest of the function
+    }
+
+    if (modelName === 'Select Model') {
+        alert("Please select a model first.");
+        return; // Stop the execution if no model is selected
+    }
+
+    // Create the data object to send to the server
+    var postData = {
+        studentId: studentId,
+        studyTime: studyTime,
+        internetAccess: internetAccess,
+        activities: activities,
+        paidClasses: paidClasses,
+        modelName: modelName
+    };
+
+    // Make the fetch request to the server
+    fetch('/predict_grade', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'  // Setting the content type header to application/json
+        },
+        body: JSON.stringify(postData)  // Convert the JavaScript object into a JSON string
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert("Error: " + data.error);
+        } else {
+            alert("Predicted Score: " + data.prediction);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to fetch data');
+    });
+}
+
+
+
+// Attach this function to the Predict button
+document.getElementById('predictButton').addEventListener('click', gatherFormData);
+
+
 

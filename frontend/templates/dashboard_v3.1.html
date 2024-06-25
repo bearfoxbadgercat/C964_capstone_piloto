@@ -397,30 +397,21 @@
                             <!--Section 1-->
                             <div class="mt-card-content" id="bm-1" >
                                 <h1>Build Model</h1>
-                                <!--Dropdown1-->
-                                <div class="dropdown">
-                                    <button class="dropbtn">Select an option</button>
-                                    <div class="dropdown-content">
-                                        <a href="#">Option 1</a>
-                                        <a href="#">Option 2</a>
-                                        <a href="#">Option 3</a>
-                                    </div>
-                                </div>
-                        <!--Dropdown1 END-->
+a
                            </div>
                             <!--Section 1 END-->
 
                             <!--Section 2-->
                             <div class="mt-card-content" id="bm-2">
                                 <label for="mySlider">Select Value:</label>
-                                <input type="range" id="mySlider" name="mySlider" min="50" max="200" value="50" step="50" oninput="updateValue(this.value)">
-                                <span id="sliderValue">50</span>
+                                <input type="range" id="mySlider" name="mySlider" min="10" max="30" value="10" step="5" oninput="updateValue(this.value)">
+                                <span id="sliderValue">10</span>
                            </div>
                             <!--Section 2 END-->
 
                             <!--Section 3-->
                             <div class="mt-card-content" id="bm-3">
-                                <button>Build</button>
+                                 <button onclick="buildModel()">Build</button>
                            </div>
                         </div>
                             <!--Section 3 END-->
@@ -439,6 +430,7 @@
                             <!--Section 2-->
                             <div class="mt-card-content" id="mae-2">
                                 <div class="score-container">
+                                    <h2 id="maeScore"></h2>
                                 </div>
                                 <h2>SCORE</h2>
                            </div>
@@ -492,48 +484,73 @@
 
                     <!--Card 1-->
                     <div class="card" id="nav-card-1">
-                        <!--Dropdown1-->
-                        <div class="dropdown">
-                            <button class="dropbtn">Select an option</button>
-                            <div class="dropdown-content">
-                                <a href="#">Option 1</a>
-                                <a href="#">Option 2</a>
-                                <a href="#">Option 3</a>
-                            </div>
-                        </div>
-                        <!--Dropdown1 END-->
 
-                        <!--Dropdown2-->
-                        <div class="dropdown">
-                            <button class="dropbtn">Select an option</button>
-                            <div class="dropdown-content">
-                                <a href="#">Option 1</a>
-                                <a href="#">Option 2</a>
-                                <a href="#">Option 3</a>
-                            </div>
-                        </div>
-                        <!--Dropdown2 END-->
 
                         <!--Dropdown3-->
                         <div class="dropdown">
-                            <button class="dropbtn">Select an option</button>
-                            <div class="dropdown-content">
-                                <a href="#">Option 1</a>
-                                <a href="#">Option 2</a>
-                                <a href="#">Option 3</a>
+                            <!--Dropdown1-->
+                            <div class="dropdown">
+                                <button class="dropbtn" id="dropdownButton">Select Model</button>
+                                <div class="dropdown-content" id="dropdownContent">
+                                    <!-- Options will be populated here dynamically -->
+                                </div>
                             </div>
+                            <!--Dropdown1 END-->
                         </div>
-                        <!--Dropdown3END-->
+                        <div class="mt-card-content">
+                            <!--Student ID Input-->
+                            <label for="studentIdInput">Enter Student ID:</label>
+                            <input type="text" id="studentIdInput" name="studentId" placeholder="Enter ID">
+                            <!--Student ID END-->
 
-                        <!--Dropdown3-->
-                        <div class="dropdown">
-                            <button class="dropbtn">Select an option</button>
-                            <div class="dropdown-content">
-                                <a href="#">Option 1</a>
-                                <a href="#">Option 2</a>
-                                <a href="#">Option 3</a>
-                            </div>
+                            <!--Student ID Button-->
+                            <button onclick="getStudent()">Get Student</button>
+                            <!--Student ID Button END-->
+                            <br>
+
+                            <!--Student ID Display-->
+                            <input type="text" id="studentIdDisplay" name="studentIdD" placeholder="" disabled><br>
+                            <!--Student ID Display END-->
+
+                            <!--Study Time Slider-->
+                            <label for="studyTimeSlider">Study Time:</label>
+                            <input type="range" id="studyTimeSlider" name="studyTime" min="0" max="4" value="0" step="1" oninput="updateStudyTimeValue(this.value)">
+                            <span id="studyTimeValue">0</span>
+                            <!--Study Time Slider END-->
+                            <br>
+                            <!--Radio Button internet-->
+                            <label>Has Internet Access:</label>
+                            <input type="radio" id="internet_yes" name="internet" value="yes">
+                            <label for="internet_yes">Yes</label>
+                            <input type="radio" id="internet_no" name="internet" value="no">
+                            <label for="internet_no">No</label>
+                            <!--Radio Button internet END-->
+                            <br>
+                            <!--Radio Button activities-->
+                             <label>Extra Curricular Activities:</label>
+                            <input type="radio" id="activities_yes" name="activities" value="yes">
+                            <label for="activities_yes">Yes</label>
+                            <input type="radio" id="activities_no" name="activities" value="no">
+                            <label for="activities_no">No</label>
+                            <!--Radio Button activities END-->
+                            <br>
+                            <!--Radio Button paid-->
+                             <label> Extra Paid Classes:</label>
+                            <input type="radio" id="paid_yes" name="paid" value="yes">
+                            <label for="paid_yes">Yes</label>
+                            <input type="radio" id="paid_no" name="paid" value="no">
+                            <label for="paid_no">No</label>
+                            <!--Radio Button paid END-->
+
+                            <!--Predict Button-->
+                             <button onclick="predict()">Predict Test Score</button>
+                            <!--Predict Button END-->
                         </div>
+
+
+
+
+
                         <!--Dropdown3END-->
 
                         <!--Dropdown2-->

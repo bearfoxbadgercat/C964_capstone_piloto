@@ -163,4 +163,4 @@ def prepare_data():
     df = pd.get_dummies(df)
 
     # Save the cleaned dateset
-    df.to_csv("../data/student_data_cleaned.csv", index=False)
+    df.to_csv("../data/data_cleaned/student_data_cleaned.csv", index=False)

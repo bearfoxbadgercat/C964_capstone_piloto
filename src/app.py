@@ -1,10 +1,12 @@
 import logging
+import os
 
 import pandas as pd
 import descriptive_methods
 import time
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, make_response
 import data_exploration_prep as eda
+import ML_method_algorithms as ml
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -76,6 +78,70 @@ def get_data():
 def logout():
     session.clear()  # Clear all session data
     return redirect(url_for('home'))
+
+
+@app.route('/get-model-names')
+def get_dataset_names():
+    # Assuming 'data' is one level up from the directory containing app.py
+    folder = os.path.join(os.path.dirname(__file__), '../models')
+    datasets = [f for f in os.listdir(folder) if f.endswith('joblib')]
+    return jsonify(datasets)
+
+
+@app.route('/build_model', methods=['POST'])
+def build_model():
+    num_leafs = request.form['sliderValue']
+    mae = ml.create_rf_model(num_leafs)
+    return jsonify(result=f"Model built with MAE: {mae}")
+
+
+@app.route('/api/get_student/<int:index>', methods=['GET'])
+def get_student(index):
+    file_path = '../data/student_data_raw.csv'
+    try:
+        df = pd.read_csv(file_path)
+        study_time = df.iloc[index]['studytime']
+        internet = df.iloc[index]['internet']
+        activities = df.iloc[index]['activities']
+        paid = df.iloc[index]['paid']
+        # Need to make study_time a string to jsonify it
+        study_time = str(study_time)
+        internet = str(internet)
+        activities = str(activities)
+        paid = str(paid)
+
+        print(f"Study time: {study_time}, Internet: {internet}, Activities: {activities}, Paid: {paid}")
+        # Jsonify the response
+        return jsonify({'study_time': study_time, 'internet': internet, 'activities': activities, 'paid': paid})
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+
+@app.route('/predict_grade', methods=['POST'])
+def predict_grade():
+    data = request.get_json()  # This assumes you send data as JSON from your frontend
+    print(data)
+
+    try:
+        # Extracting data from the POST request
+        row_number = int(data['studentId'])
+        study_time = int(data['studyTime'])
+        internet = data['internetAccess']
+        activities = data['activities']
+        paid = data['paidClasses']
+        model_name = data['modelName']  # Ensure this is included in the request from the frontend
+
+        # Predict the grade using the predict_score function
+        prediction = ml.predict_score(row_number, study_time, internet, activities, paid, model_name)
+        print("meow")
+        # Print the prediction to the console
+        print(f"The predicted score for student {row_number} is {prediction[0]}")
+
+        # Return the prediction result
+        return jsonify({'prediction': prediction[0]})
+    except Exception as e:
+        print("Error:", e)  # It's also helpful to print out errors to the console
+        return jsonify({'error': str(e)}), 400
 
 
 # Run the application
