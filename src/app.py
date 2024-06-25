@@ -23,7 +23,7 @@ def home():
     if 'username' in session:
         return redirect(url_for('dashboard_route'))
     else:
-        return render_template('login.html')
+        return render_template('index.html')
 
 
 # Route for handling login
