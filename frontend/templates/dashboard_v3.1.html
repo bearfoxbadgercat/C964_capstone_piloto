@@ -32,7 +32,7 @@
 
     <body>
         <!--Navigation Sidebar -->
-        
+
         <nav class="navigation">
 
             <!--Navigation Item logo-->
@@ -84,7 +84,7 @@
 
 
             <!-- Navigation Item logout -->
-            <div class="nav-item" id="logout" onclick="showFeature('db-navigator)">
+            <div class="nav-item" id="logout" onclick="showFeature('db-navigator')">
                 <a href="/logout" class="btn btn-danger">
                     <span class="material-symbols-outlined" style="font-size: 200%"> logout </span>
                     <p style="font-size: 14px; color: white; font-family: Roboto;">Logout</p>
@@ -151,12 +151,11 @@
             <!--Data Pilot -->
             <div class="feature" id="data-pilot-f">
                 <div dp-grid-container>
-
                     <!--Card 1 Welcome/Data Pilot Description-->
                     <div class="dp-card" id="dp-card-1">
                         <h1>Welcome To Data Pilot</h1>
                         <p>Data Pilot will help you explore and understand the data. As the feature guides you through the dataset,
-                        Data Pilot will take actions such as featurizing, parsing, and wrangling the data to ensure proper preparation.</p>
+Data Pilot will take actions such as featurizing, parsing, and wrangling the data to ensure proper preparation.</p>
                     </div>
                     <!--Card 1END-->
 
@@ -164,19 +163,19 @@
                     <div class="dp-card" id="dp-card-2">
                         <h2>Initial Data Exploration</h2>
                         <p>We will first use the pandas .head() method to examine the first few rows of the
-                            dataset and familiarize ourselves with its structure.
-                        </p>
+dataset and familiarize ourselves with its structure.
+</p>
                         <code class="code-box">
-                            # First set option to display all columns<br>
-                            pd.set_option('display.max_columns', None)<br><br>
+# First set option to display all columns<br>
+pd.set_option('display.max_columns', None)<br><br>
 
-                            # Load the dataset<br>
-                            file_path = "../data/student_data_raw.csv"<br>
-                            df = pd.read_csv(file_path)<br><br>
+# Load the dataset<br>
+file_path = "../data/student_data_raw.csv"<br>
+df = pd.read_csv(file_path)<br><br>
 
-                            # Display the first few rows of the dataset<br>
-                            df.head()
-                        </code>
+# Display the first few rows of the dataset<br>
+df.head()
+</code>
                         <!-- Dataset head -->
                         <div class="card">
                             <div class="card-body">
@@ -195,15 +194,62 @@
                             </div>
                         </div><br>
                         <!-- Dataset head END-->
-                       <div class="observation-section">
+                        <div class="observation-section">
                             <h3>Observations</h3><br>
                             <h4>General Observations</h4>
                             <p>Each record represents an individual student, with various attributes including demographics,
-                                family background, and academic performance across three separate exams.</p>
+family background, and academic performance across three separate exams.</p>
 
                             <h4>Data Type</h4>
                             <p>The dataset contains a mix of seemingly numerical and categorical variables.
-                               Upon verifying data types, we may need to convert or preprocess some features.</p>
+Upon verifying data types, we may need to convert or preprocess some features.</p>
+
+                            <h4>Consistency</h4>
+                            <p>The data appears to be consistent based on the initial inspection.
+                                A thorough check on the entire dataset will be needed to confirm
+                                that all categorical values are standardized and numerical values are
+                                correctly formatted.</p>
+
+                            <h4>Order</h4>
+                            <p>The data is not ordered chronologically or sequentially,
+                                as there are no timestamps or dates indicating a specific order.</p>
+
+                            <h4>Missing Values</h4>
+                            <p>The data seems to be complete in the sampled rows. We will verify this with a thorough review and account for any missing values.</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 Data Head END -->
+
+                    <!-- Card 3 Data Info -->
+                    <div class="dp-card" id="dp-card-3">
+                        <h2>Data Info</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                        urna vitae lorem vestibulum pharetra. Donec scelerisque, justo non
+                        ultrices ultricies, metus elit interdum dui, ac varius ex enim nec massa.
+                        Praesent fringilla orci eget diam malesuada, ac lacinia felis commodo.
+                        </p>
+                        <code class="code-box">
+                            Random Text
+                        </code>
+                        <br>
+
+                        <div class="container">
+                            <div class="card" id="data-info-card">
+                                <pre id="data-info">
+                                <!-- DataFrame info will be inserted here -->
+                                </pre>
+                            </div>
+                        </div>
+
+                        <div class="observation-section" id="info-observations">
+                            <h3>Observations</h3><br>
+                            <h4>General Observations</h4>
+                            <p>Each record represents an individual student, with various attributes including demographics,
+                            family background, and academic performance across three separate exams.</p>
+
+                            <h4>Data Type</h4>
+                            <p>The dataset contains a mix of seemingly numerical and categorical variables.
+Upon verifying data types, we may need to convert or preprocess some features.</p>
 
                             <h4>Consistency</h4>
                             <p>The data appears to be consistent based on the initial inspection. A thorough check on the entire dataset will be needed to confirm that all categorical values are standardized and numerical values are correctly formatted.</p>
@@ -215,50 +261,6 @@
                             <p>The data seems to be complete in the sampled rows. We will verify this with a thorough review and account for any missing values.</p>
                         </div>
                     </div>
-                    <!-- Card 2 Data Head END -->
-
-                    <!-- Card 3 Data Info -->
-                    <div class="dp-card" id="dp-card-3">
-                       <h2>Data Info</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                           urna vitae lorem vestibulum pharetra. Donec scelerisque, justo non
-                           ultrices ultricies, metus elit interdum dui, ac varius ex enim nec massa.
-                           Praesent fringilla orci eget diam malesuada, ac lacinia felis commodo.
-                         </p>
-                        <code class="code-box">
-
-                        </code>
-                        <br>
-                        <div class="container">
-                            <div class="card" id="data-info-card">
-                                <pre id="data-info">
-                                    <!-- DataFrame info will be inserted here -->
-                                </pre>
-                            </div>
-
-                             <div class="observation-section" id="info-observations">
-                                <h3>Observations</h3><br>
-                                <h4>General Observations</h4>
-                                <p>Each record represents an individual student, with various attributes including demographics,
-                                    family background, and academic performance across three separate exams.</p>
-
-                                <h4>Data Type</h4>
-                                <p>The dataset contains a mix of seemingly numerical and categorical variables.
-                                   Upon verifying data types, we may need to convert or preprocess some features.</p>
-
-                                <h4>Consistency</h4>
-                                <p>The data appears to be consistent based on the initial inspection. A thorough check on the entire dataset will be needed to confirm that all categorical values are standardized and numerical values are correctly formatted.</p>
-
-                                <h4>Order</h4>
-                                <p>The data is not ordered chronologically or sequentially, as there are no timestamps or dates indicating a specific order.</p>
-
-                                <h4>Missing Values</h4>
-                                <p>The data seems to be complete in the sampled rows. We will verify this with a thorough review and account for any missing values.</p>
-                             </div>
-
-                        </div>
-
-                    </div>
                     <!-- Card 3 Data Info END -->
 
                     <!--Visualization - Age Distribution-->
@@ -269,7 +271,6 @@
                                 <img src="{{ url_for('static', filename='chart2.png') }}" alt="Study Time Chart" >
                             </div>
                         </div>
-
                     </div>
                     <!-- Card 4 Age Distribution -->
 
@@ -279,7 +280,7 @@
                         <div class="container">
                             <div class="card" id="num-analysis-card">
                                 <pre id="num-stats-analysis">
-                        <!-- Numerical column analysis will be inserted here -->
+                                    <!-- Numerical column analysis will be inserted here -->
                                 </pre>
                             </div>
                         </div>
@@ -292,7 +293,7 @@
                         <div class="container">
                             <div class="card" id="cat-analysis-card">
                                 <pre id="cat-analysis">
-                        <!-- Categorical column analysis will be inserted here -->
+                                    <!-- Categorical column analysis will be inserted here -->
                                 </pre>
                             </div>
                         </div>
@@ -301,33 +302,31 @@
 
                     <!--Card 6 OH Encoding-->
                     <div class="dp-card" id="dp-card-2">
-
                         <h2>One Hot Encoding</h2>
                         <p>We will first use the pandas .head() method to examine the first few rows of the
-                            dataset and familiarize ourselves with its structure.</p>
-
+                        dataset and familiarize ourselves with its structure.</p>
                         <code class="code-box">
-                            # First set option to display all columns<br>
-                            pd.set_option('display.max_columns', None)<br><br>
+                        # First set option to display all columns<br>
+                        pd.set_option('display.max_columns', None)<br><br>
 
-                            # Load the dataset<br>
-                            file_path = "../data/student_data_raw.csv"<br>
-                            df = pd.read_csv(file_path)<br><br>
+                        # Load the dataset<br>
+                        file_path = "../data/student_data_raw.csv"<br>
+                        df = pd.read_csv(file_path)<br><br>
 
-                            # Display the first few rows of the dataset<br>
-                            df.head()
+                        # Display the first few rows of the dataset<br>
+                        df.head()
                         </code>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered" id="oh-data-table">
-                                <thead>
-                                    <tr id="oh-table-head">
-                                    <!-- Column headers will be inserted here -->
-                                    </tr>
-                                </thead>
-                                <tbody id="oh-table-body">
-                                <!-- Table rows will be inserted here -->
-                                </tbody>
-                            </table>
+                    <thead>
+                    <tr id="oh-table-head">
+                    <!-- Column headers will be inserted here -->
+                    </tr>
+                    </thead>
+                    <tbody id="oh-table-body">
+                    <!-- Table rows will be inserted here -->
+                    </tbody>
+                    </table>
                         </div>
                     </div>
                     <!--Card 6 OH Encoding END-->
@@ -350,18 +349,13 @@
                         </div>
                         <!--Study Time vs Average Grade END-->
                     </div>
-
-
-
-
-                    </div>
                     <!--Card 7 Heat Maps END-->
 
                     <!--Card 7 Heat Maps Uncontrollable-->
                     <div class="dp-card" id="dp-card-7">
                         <!--Heat Map 2 - Personal-->
                         <div class="heat-map-card" id="heat-map-2">
-                            <!--Map 2 Content Goes Here-->
+                        <!--Map 2 Content Goes Here-->
                             <img src="{{ url_for('static', filename='heatmap-p.png') }}" alt="Heat Map 2" >
                         </div>
                         <!--Heat Map 2 END-->
@@ -373,210 +367,189 @@
                         </div>
                         <!--Heat Map 3 END-->
                     </div>
+                    <!--Card 7 Heat Maps Uncontrollable END-->
 
                     <!-- Save Cleaned Dataset -->
-                     <div class="dp-card" id="save-cleaned-dataset">
+                    <div class="dp-card" id="save-cleaned-dataset">
                         <code class="code-box">
-                            # Save the cleaned dataset<br>
-                            cleaned_file_path = "../data/student_data_cleaned.csv"<br>
-                            df.to_csv(cleaned_file_path, index=False)
+                        # Save the cleaned dataset<br>
+                        cleaned_file_path = "../data/student_data_cleaned.csv"<br>
+                        df.to_csv(cleaned_file_path, index=False)
                         </code>
-                     </div>
+                    </div>
                     <!--Save Cleaned Dataset  END-->
-                    <br>
+                </div>
             </div>
-
             <!--Data Pilot END -->
 
             <!--Model Trainer -->
             <div class="feature" id="model-trainer-f">
+                <!--Grid-->
                 <div class="grid-container" id="mt-grid">
                     <!--Build Model Card-->
-                        <div class="mt-card" id="card-build-model">
+                    <div class="mt-card" id="card-build-model">
 
-                            <!--Section 1-->
-                            <div class="mt-card-content" id="bm-1" >
-                                <h1>Build Model</h1>
-a
-                           </div>
+                         <!--Section 1-->
+                        <div class="mt-card-content" id="bm-1" >
+                            <h1>Build Model</h1>
+                            <p>
+                            Build a Random Forest Regression model to predict student test scores.
+                            Set the minimum leaf size to control the complexity of the model.
+                            The model will be tested and automatically saved.
+                            </p>
+                        </div>
                             <!--Section 1 END-->
-
                             <!--Section 2-->
-                            <div class="mt-card-content" id="bm-2">
-                                <label for="mySlider">Select Value:</label>
-                                <input type="range" id="mySlider" name="mySlider" min="10" max="30" value="10" step="5" oninput="updateValue(this.value)">
-                                <span id="sliderValue">10</span>
-                           </div>
+                        <div class="mt-card-content" id="bm-2">
+                            <label for="mySlider">Set Minimum Leaf Size:</label><br>
+                            <input type="range" id="mySlider" name="mySlider" min="10" max="30" value="10" step="5" oninput="updateValue(this.value)">
+                            <span id="sliderValue">10</span>
+                            <h5>About Minimum Leaf Size</h5>
+                            <p>This is the smallest number of items or data points that must be
+                            in the smallest part of the decision tree for it to be considered valid.
+                            A smaller value will result in a more complex model, while a larger value
+                            will result in a simpler model. This can affect the model's accuracy.
+                            </p>
+                        </div>
                             <!--Section 2 END-->
 
                             <!--Section 3-->
-                            <div class="mt-card-content" id="bm-3">
-                                 <button onclick="buildModel()">Build</button>
-                           </div>
+                        <div class="mt-card-content" id="bm-3">
+                            <button onclick="buildModel()">Build</button>
                         </div>
                             <!--Section 3 END-->
-
+                    </div>
                     <!--Build Model Card END -->
 
                     <!--Test MAE Card-->
-                        <div class="mt-card" id="card-mae">
-
-                            <!--Section 1-->
-                            <div class="mt-card-content" id="mae-1" >
-                                <h1>Test M.A.E.</h1>
-                           </div>
-                            <!--Section 1 END-->
-
-                            <!--Section 2-->
-                            <div class="mt-card-content" id="mae-2">
-                                <div class="score-container">
-                                    <h2 id="maeScore"></h2>
-                                </div>
-                                <h2>SCORE</h2>
-                           </div>
-                            <!--Section 2 END-->
-
-                            <!--Section 3-->
-                            <div class="mt-card-content" id="mae-3">
-                                <button>Test</button>
-                           </div>
+                    <div class="mt-card" id="card-mae">
+                        <div class="mt-card-content" id="mae-1" >
+                            <h1>Model Test</h1>
+                            <p>
+                            On building the model, the application will test the model's accuracy
+                            using the Mean Absolute Error (MAE) metric. The MAE score and name of the saved
+                            model will be displayed below.
+                            </p>
+                            <div class="score-container">
+                                <h4 id="maeScore"></h4>
+                            </div>
+                            <h5>About Mean Absolute Error</h5>
+                            <p>
+                            Mean Absolute Error (MAE) measures how far off predictions are
+                            from actual values, on average. A score closer to zero means
+                            more accurate predictions.
+                            </p>
                         </div>
-                            <!--Section 3 END-->
-
+                    </div>
                     <!--Test MAE Card END -->
-                    <!--Test Save Card-->
-                        <div class="mt-card" id="card-save">
-
-                            <!--Section 1-->
-                            <div class="mt-card-content" id="save-1" >
-                                <h1>SAVE MODEL</h1>
-                           </div>
-                            <!--Section 1 END-->
-
-                            <!--Section 2-->
-                            <div class="mt-card-content" id="save-2">
-                                <button>Save</button>
-                           </div>
-                            <!--Section 2 END-->
-
-                            <!--Section 3-->
-                            <div class="mt-card-content" id="save-3">
-                                <button>Cancel</button>
-                           </div>
-                        </div>
-                            <!--Section 3 END-->
-
-                    <!--Test MAE Card END -->
-
-
-
-
-
-
                 </div>
+                <!--Grid END-->
             </div>
             <!--Model Trainer END -->
 
             <!--Navigator -->
             <div class="feature" id="navigator-f">
-                <!--Grid-->
-                <div class="grid-container" id="nav-grid">
 
-                    <!--Card 1-->
-                    <div class="card" id="nav-card-1">
+                    <div class="nav-card">
+                        <!--Dropdown1-->
 
+                        <select id="fileDropdown">
+                            <option value="">Select Model</option>
+                        </select>
+                        <br><br>
 
-                        <!--Dropdown3-->
-                        <div class="dropdown">
-                            <!--Dropdown1-->
-                            <div class="dropdown">
-                                <button class="dropbtn" id="dropdownButton">Select Model</button>
-                                <div class="dropdown-content" id="dropdownContent">
-                                    <!-- Options will be populated here dynamically -->
-                                </div>
-                            </div>
-                            <!--Dropdown1 END-->
-                        </div>
-                        <div class="mt-card-content">
-                            <!--Student ID Input-->
-                            <label for="studentIdInput">Enter Student ID:</label>
-                            <input type="text" id="studentIdInput" name="studentId" placeholder="Enter ID">
-                            <!--Student ID END-->
+                        <!--Dropdown1 END-->
+                        <!--Student ID Input-->
+                        <label for="studentIdInput">Enter Student ID:</label>
+                        <input type="text" id="studentIdInput" name="studentId" placeholder="Enter ID">
+                        <!--Student ID END-->
+                        <!--Student ID Button-->
+                        <button onclick="getStudent()">Get Student</button>
+                        <br><br>
+                        Student Information<br>
+                        <!--Student ID Button END-->
 
-                            <!--Student ID Button-->
-                            <button onclick="getStudent()">Get Student</button>
-                            <!--Student ID Button END-->
-                            <br>
-
-                            <!--Student ID Display-->
-                            <input type="text" id="studentIdDisplay" name="studentIdD" placeholder="" disabled><br>
-                            <!--Student ID Display END-->
-
-                            <!--Study Time Slider-->
-                            <label for="studyTimeSlider">Study Time:</label>
-                            <input type="range" id="studyTimeSlider" name="studyTime" min="0" max="4" value="0" step="1" oninput="updateStudyTimeValue(this.value)">
-                            <span id="studyTimeValue">0</span>
-                            <!--Study Time Slider END-->
-                            <br>
-                            <!--Radio Button internet-->
-                            <label>Has Internet Access:</label>
-                            <input type="radio" id="internet_yes" name="internet" value="yes">
-                            <label for="internet_yes">Yes</label>
-                            <input type="radio" id="internet_no" name="internet" value="no">
-                            <label for="internet_no">No</label>
-                            <!--Radio Button internet END-->
-                            <br>
-                            <!--Radio Button activities-->
-                             <label>Extra Curricular Activities:</label>
-                            <input type="radio" id="activities_yes" name="activities" value="yes">
-                            <label for="activities_yes">Yes</label>
-                            <input type="radio" id="activities_no" name="activities" value="no">
-                            <label for="activities_no">No</label>
-                            <!--Radio Button activities END-->
-                            <br>
-                            <!--Radio Button paid-->
-                             <label> Extra Paid Classes:</label>
-                            <input type="radio" id="paid_yes" name="paid" value="yes">
-                            <label for="paid_yes">Yes</label>
-                            <input type="radio" id="paid_no" name="paid" value="no">
-                            <label for="paid_no">No</label>
-                            <!--Radio Button paid END-->
-
-                            <!--Predict Button-->
-                             <button onclick="predict()">Predict Test Score</button>
-                            <!--Predict Button END-->
-                        </div>
-                        <!--Dropdown3END-->
-
-                        <!--Dropdown2-->
-                    </div>
-                    <!--Card 1 END-->
-
-                    <!--Card 2-->
-                    <div class="card" id="nav-card-2">
-                    <h2>Average Score</h2>
+                        <!--Student ID Display-->
+                        Student ID:
+                        <input type="text" id="studentIdDisplay" name="studentIdD" placeholder="" disabled><br>
+                        <!--Student ID Display END-->
+                        <br>
+                        <!--Study Time Slider-->
+                        <label for="studyTimeSlider">Study Time:</label>
+                        <input type="range" id="studyTimeSlider" name="studyTime" min="0" max="4" value="0" step="1" oninput="updateStudyTimeValue(this.value)">
+                        <span id="studyTimeValue">0</span>
+                        <!--Study Time Slider END-->
+                        <br>
+                        <!--Radio Button internet-->
+                        <label>Has Internet Access:</label>
+                        <input type="radio" id="internet_yes" name="internet" value="yes">
+                        <label for="internet_yes">Yes</label>
+                        <input type="radio" id="internet_no" name="internet" value="no">
+                        <label for="internet_no">No</label>
+                        <!--Radio Button internet END-->
+                        <br>
+                        <!--Radio Button activities-->
+                         <label>Extra Curricular Activities:</label>
+                        <input type="radio" id="activities_yes" name="activities" value="yes">
+                        <label for="activities_yes">Yes</label>
+                        <input type="radio" id="activities_no" name="activities" value="no">
+                        <label for="activities_no">No</label>
+                        <!--Radio Button activities END-->
+                        <br>
+                        <!--Radio Button paid-->
+                         <label> Extra Paid Classes:</label>
+                        <input type="radio" id="paid_yes" name="paid" value="yes">
+                        <label for="paid_yes">Yes</label>
+                        <input type="radio" id="paid_no" name="paid" value="no">
+                        <label for="paid_no">No</label>
+                        <!--Radio Button paid END-->
+                        <br>
+                        <!--Predict Button-->
+                         <button onclick="predict()">Predict Test Score</button>
+                        <!--Predict Button END-->
+                        <br><br>
+                        <h2>Average Score</h2>
                         <div class="mt-card-content">
                             <input type="text" id="averageScore" name="averageScore" placeholder="" disabled>
                         </div>
-                    </div>
-                    <!--Card 2 END-->
 
-                    <!--Card 3-->
-                    <div class="card" id="nav-card-3">
                         <h2>Predicted Score</h2>
                         <div class="mt-card-content">
                             <input type="text" id="predictedScore" name="predictedScore" placeholder="" disabled>
+                        </div>
                     </div>
-                    <!--Card 3 END-->
-
-                </div>
-                <!--Grid END-->
             </div>
             <!--Navigator END -->
+
         <!--Main Content END-->
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#fileDropdown').on('click', function(){
+                    var selectedValue = $(this).val();  // Save the currently selected value
+
+                    $.getJSON('/api/files', function(data){
+                        var dropdown = $('#fileDropdown');
+                        dropdown.empty(); // Clear existing options
+                        dropdown.append($('<option></option>').attr('value', '').text('Select Model'));
+
+                        if (data.error) {
+                            alert('Error: ' + data.error);
+                        } else {
+                            $.each(data, function(index, value){
+                                dropdown.append($('<option></option>').attr('value', value).text(value));
+                            });
+
+                            if (selectedValue) {
+                                dropdown.val(selectedValue);  // Restore the previously selected value if it exists
+                            }
+                        }
+                    });
+                });
+            });
+
+        </script>
         </div>
-
-
-
     </body>
 </html>

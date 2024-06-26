@@ -80,19 +80,27 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/get-model-names')
-def get_dataset_names():
-    # Assuming 'data' is one level up from the directory containing app.py
-    folder = os.path.join(os.path.dirname(__file__), '../models')
-    datasets = [f for f in os.listdir(folder) if f.endswith('joblib')]
-    return jsonify(datasets)
+# @app.route('/get-model-names')
+# def get_model_names():
+#     folder = os.path.join(os.path.dirname(__file__), '../models')
+#     models = [f for f in os.listdir(folder) if f.endswith('joblib')]
+#     return jsonify(models)
+#
+#
+# @app.route('/get-dataset-names')
+# def get_dataset_names():
+#     data_folder = os.path.join(os.path.dirname(__file__), '../models')
+#     datasets = [f for f in os.listdir(data_folder) if f.endswith('.joblib')]
+#     return jsonify(datasets)
 
 
 @app.route('/build_model', methods=['POST'])
 def build_model():
     num_leafs = request.form['sliderValue']
     mae = ml.create_rf_model(num_leafs)
-    return jsonify(result=f"Model built with MAE: {mae}")
+    score = mae[0]
+    save_name = mae[1]
+    return jsonify(result=f"MAE Score: {score} {save_name}")
 
 
 @app.route('/api/get_student/<int:index>', methods=['GET'])
@@ -148,6 +156,19 @@ def predict_grade():
     except Exception as e:
         print("Error:", e)  # It's also helpful to print out errors to the console
         return jsonify({'error': str(e)}), 400
+
+
+@app.route('/api/files')
+def get_models():
+    try:
+        folder_path = '../models/'
+        file_extension = '.joblib'
+        files = [f for f in os.listdir(folder_path) if f.endswith(file_extension)]
+        return jsonify(files)
+    except PermissionError:
+        return jsonify({'error': 'Permission denied to access the directory.'}), 403
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 # Run the application

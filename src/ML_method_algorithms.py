@@ -1,13 +1,12 @@
 """
 This module contains the implementation of the machine-learning methods and algorithms used in the project.
-    - Implementation of interactive queries
+    - Implementation of interactive queries (Back End)
     - Implementation of machine-learning methods and algorithms
     - Functionalities to evaluate the accuracy of the data product
     - Tools to monitor and maintain the product
 """
 import os
 
-import dump
 import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -73,7 +72,7 @@ def create_rf_model(num_leafs):
     model_name = f'rf_model_{num_leafs}_leafs.joblib'
 
     # Return the model filename and the mean absolute error
-    return mae, "Model saved as " + model_name
+    return mae, "\n\nModel saved as: \n" + model_name
 
 
 # Part C: Implementation of machine-learning methods and algorithms
@@ -84,6 +83,7 @@ Navigator
 ========================"""
 
 
+# Part C: Predictive  Method
 # Part C: Implementation of interactive queries
 def predict_score(row_number, study_time, internet, activities, paid, model_name):
     # Print all columns in the head
@@ -133,6 +133,3 @@ def predict_score(row_number, study_time, internet, activities, paid, model_name
     prediction = model.predict(student)
 
     return prediction
-
-
-predict_score(50, 3, 'yes', 'yes', 'yes', 'rf_model_20_leafs.joblib')

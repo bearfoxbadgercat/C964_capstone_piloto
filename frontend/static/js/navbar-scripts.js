@@ -121,28 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching data:', error));
 });
 
-function selectOption(option) {
-    document.getElementById('dropdownButton').innerText = option;
-}
 
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/get-model-names')
-        .then(response => response.json())
-        .then(data => {
-            const dropdownContent = document.getElementById('dropdownContent');
-            dropdownContent.innerHTML = '';  // Clear any existing options
-            data.forEach(file => {
-                const link = document.createElement('a');
-                link.href = '#';
-                link.textContent = file;
-                link.onclick = () => {
-                    document.getElementById('dropdownButton').innerText = file;
-                };
-                dropdownContent.appendChild(link);
-            });
-        })
-        .catch(error => console.error('Error fetching dataset names:', error));
-});
 
 //  Updates the value of the slider
 function updateValue(value) {
@@ -163,7 +142,7 @@ function buildModel() {
   .then(response => response.json())
   .then(data => {
     // Update the MAE score in the HTML
-    document.getElementById('maeScore').innerText = "MAE: " + data.result;
+    document.getElementById('maeScore').innerText =  data.result;
   })
   .catch(error => console.error('Error:', error));
 }
@@ -286,7 +265,8 @@ function getStudent() {
 }
 
 function predict() {
-    var modelName = document.getElementById('dropdownButton').innerText;  // Capture the model name from the dropdown
+//    var modelName = document.getElementById('fileDropDown').innerText;  // Capture the model name from the dropdown
+    var modelName = document.getElementById('fileDropdown').value;  // Capture the model name from the dropdown
     var studentId = document.getElementById('studentIdDisplay').value;    // Capture the Student ID from the display input field
     var studyTime = document.getElementById('studyTimeSlider').value;     // Capture the Study Time from the slider
     var internetAccess = document.querySelector('input[name="internet"]:checked').value; // Determine which Internet Access radio button is checked
@@ -299,7 +279,7 @@ function predict() {
         return; // Stop the execution of the rest of the function
     }
 
-    if (modelName === 'Select Model') {
+    if (!modelName || modelName === '') {
         alert("Please select a model first.");
         return; // Stop the execution if no model is selected
     }
@@ -340,8 +320,7 @@ function predict() {
 
 
 
-// Attach this function to the Predict button
-document.getElementById('predictButton').addEventListener('click', gatherFormData);
-
+/*// Attach this function to the Predict button
+document.getElementById('predict').addEventListener('click', gatherFormData);*/
 
 

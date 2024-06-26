@@ -61,6 +61,7 @@ Data Dashboard Styles
 
     }
 
+
 .card {
     max-width: 100%;
     height: auto;
@@ -162,16 +163,21 @@ Model Trainer Styles
 #mt-grid.grid-container {
     display: grid;
     height: 100%; /* or another specific height */
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
     grid-template-rows: 1fr; /* ensures rows stretch vertically */
     width: min(95%, 70rem)
     margin-inline: auto;
+
 }
 
 .mt-card {
     display: grid;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     padding: 20px;
+    margin: 10px;
+    background-color: #f9f9f9; /* Light grey background for content cards */
+    border-radius: 8px; /* Rounded corners for modern look */
 }
 
 #bm-1{
@@ -221,14 +227,12 @@ Model Trainer Styles
 
 .score-container{
     background-color: white;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    width: 70%;
-    height: 70%;
+    display: flex;
+    width: 90%;
+    height: 30%;
     outline: 1px solid black;
-
-}
+    padding: 1rem;
+    }
 
 
 
@@ -237,8 +241,22 @@ Model Trainer Styles
 /*========================
 Navigator Styles
 ========================*/
-#navigator-f.feature{
 
+#navigator-f{
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.nav-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 75%;
+    max-height: 75%;
+    width: 100%;
 }
 
 /*========================
@@ -255,61 +273,13 @@ a {
     text-decoration: none; /* This will remove the underline */
 }
 
-/*========================
-Dropdown Styles
-========================*/
-/* Dropdown container */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
 
-/* Dropdown button */
-.dropbtn {
-    background-color: #3498db;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #2980b9;
-}
 
 .table-responsive {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             width: 100%;
-        }
+  }
 
 .container{
 display: flex;
@@ -319,4 +289,81 @@ gap: 1.5rem;
 #info-observations{
 max-width: 50%;
 
+}
+
+/*New Features*/
+.nav-card h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.model-list {
+    margin-bottom: 20px;
+}
+
+.model-list a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.model-list a:hover {
+    text-decoration: underline;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="range"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group input[type="range"] {
+    padding: 0;
+}
+
+.form-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+.form-group button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-group button:hover {
+    background: #0056b3;
+}
+
+.form-group #get-student {
+    margin-top: 0;
+}
+
+.score {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.score span {
+    display: block;
+    margin-bottom: 10px;
 }
